@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorry Baby ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a1a, #1a0a2e, #2a0a3e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Heart Animation */
+        .heart-container {
+            position: relative;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        .heart {
+            font-size: 150px;
+            color: #ff1744;
+            text-shadow: 
+                0 0 20px #ff1744,
+                0 0 40px #ff1744,
+                0 0 60px #ff1744,
+                0 0 80px #ff1744,
+                0 0 100px #ff1744;
+            animation: pulse 1.5s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .heart:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Main Text */
+        .main-text {
+            font-size: 60px;
+            font-weight: bold;
+            margin: 20px 0;
+            background: linear-gradient(45deg, #ff6b6b, #ff1744, #ff6b6b, #ff1744);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientMove 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 23, 68, 0.3);
+            letter-spacing: 3px;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Sub Text */
+        .sub-text {
+            font-size: 24px;
+            color: #ff6b81;
+            margin: 10px 0;
+            animation: fadeInOut 2s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 107, 129, 0.3);
+            letter-spacing: 5px;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Sparkle Effect */
+        .sparkles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            animation: floatUp 10s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-10vh) rotate(720deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Click Message */
+        .click-message {
+            display: none;
+            font-size: 30px;
+            color: #ffd93d;
+            margin-top: 30px;
+            animation: bounceIn 1s ease-out;
+            text-shadow: 0 0 30px rgba(255, 217, 61, 0.3);
+        }
+
+        .click-message.show {
+            display: block;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Rose Animation (Reveal) */
+        .rose-container {
+            display: none;
+            margin-top: 30px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .rose-container.show {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(50px) scale(0.8); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .rose-text {
+            font-size: 80px;
+            animation: rotate 4s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Love Letter */
+        .love-letter {
+            display: none;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 23, 68, 0.2);
+            animation: slideIn 1s ease-out;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .love-letter.show {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(-50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .love-letter p {
+            color: #ff6b81;
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        .love-letter .emoji {
+            font-size: 24px;
+        }
+
+        /* Button */
+        .forgive-btn {
+            display: none;
+            margin-top: 20px;
+            padding: 15px 40px;
+            font-size: 20px;
+            background: linear-gradient(45deg, #ff1744, #ff6b6b);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: bounceIn 1s ease-out;
+            box-shadow: 0 0 30px rgba(255, 23, 68, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .forgive-btn:hover {
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 0 50px rgba(255, 23, 68, 0.5);
+        }
+
+        .forgive-btn.show {
+            display: inline-block;
+        }
+
+        /* Confetti */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            animation: confettiFall linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .heart { font-size: 100px; }
+            .main-text { font-size: 35px; }
+            .sub-text { font-size: 18px; }
+            .love-letter { margin: 20px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="heart-container">
+            <div class="heart" id="heart" onclick="showLove()">❤️</div>
+        </div>
+
+        <div class="main-text">Sorry Baby ❤️</div>
+
+
+        <!-- Click Message -->
+        <div class="click-message" id="clickMessage">
+            💕 Please Forgive Me 💕
+        </div>
+
+        <!-- Rose -->
+        <div class="rose-container" id="roseContainer">
+            <div class="rose-text">🌹</div>
+        </div>
+
+        <!-- Love Letter -->
+        <div class="love-letter" id="loveLetter">
+            <p>My Dearest Baby, 💕</p>
+            <p>I'm truly sorry for everything.</p>
+            <p class="emoji">🌸Please 🌸</p>
+        </div>
+
+        <!-- Forgive Button -->
+        <button class="forgive-btn" id="forgiveBtn" onclick="forgive()">
+            Forgive Me 💕
+        </button>
+    </div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <script>
+        // Create floating hearts in background
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['❤️', '💕', '💗', '💖', '💘', '💝', '✨'];
+            
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heart.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                heart.style.animationDelay = (Math.random() * 10) + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        // Sparkle Effect around heart
+        function createSparkles() {
+            const heart = document.getElementById('heart');
+            const container = document.createElement('div');
+            container.className = 'sparkles';
+            
+            for (let i = 0; i < 12; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                const angle = (i / 12) * Math.PI * 2;
+                const radius = 80 + Math.random() * 30;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                sparkle.style.transform = `translate(${x}px, ${y}px)`;
+                sparkle.style.animationDelay = (i / 12) + 's';
+                sparkle.style.background = ['#ff6b6b', '#ffd93d', '#ffffff', '#ff1744'][i % 4];
+                container.appendChild(sparkle);
+            }
+            
+            heart.parentNode.appendChild(container);
+        }
+
+        // Show love message and animations
+        function showLove() {
+            const clickMessage = document.getElementById('clickMessage');
+            const roseContainer = document.getElementById('roseContainer');
+            const loveLetter = document.getElementById('loveLetter');
+            const forgiveBtn = document.getElementById('forgiveBtn');
+            
+            clickMessage.classList.add('show');
+            
+            setTimeout(() => {
+                roseContainer.classList.add('show');
+            }, 500);
+            
+            setTimeout(() => {
+                loveLetter.classList.add('show');
+            }, 1000);
+            
+            setTimeout(() => {
+                forgiveBtn.classList.add('show');
+            }, 1500);
+            
+            // Remove click event
+            document.getElementById('heart').onclick = null;
+        }
+
+        // Forgive function with confetti
+        function forgive() {
+            // Create confetti
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#ff1744', '#ff6b6b', '#ffd93d', '#ffffff', '#ff1493', '#ff6b81', '#a8e6cf', '#ff4757'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 8 + 5) + 'px';
+                confetti.style.height = (Math.random() * 8 + 5) + 'px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = (Math.random() * 2) + 's';
+                container.appendChild(confetti);
+            }
+            
+            // Change text
+            document.querySelector('.main-text').textContent = 'I Love You Baby! ❤️';
+            document.querySelector('.sub-text').textContent = 'You Made Me The Happiest! ✨';
+            document.querySelector('.heart').textContent = '💕';
+            
+            // Remove button
+            document.getElementById('forgiveBtn').style.display = 'none';
+            
+            // Add celebration message
+            setTimeout(() => {
+                const celebration = document.createElement('div');
+                celebration.style.cssText = `
+                    font-size: 30px;
+                    color: #ffd93d;
+                    margin-top: 20px;
+                    animation: bounceIn 1s ease-out;
+                    text-shadow: 0 0 30px rgba(255, 217, 61, 0.3);
+                `;
+                celebration.textContent = '🎉 We Are Together Forever! 🎉';
+                document.querySelector('.container').appendChild(celebration);
+            }, 1000);
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+
+        // Init
+        createFloatingHearts();
+        createSparkles();
+    </script>
+
+</body>
+</html>
